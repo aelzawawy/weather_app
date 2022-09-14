@@ -74,7 +74,7 @@ liveReloadServer.server.once("connection", () => {
 });
 
 const app = express(); // includes functions for CRUD operations
-const port = process.env.port || 3000;
+const port = process.env.port || 5000;
 //partials (Common parts in diff pages)
 const partialsPath = path.join(`${__dirname}`, `/templates/partials`); //partials path
 hbs.registerPartials(partialsPath); //hbs function to see partials

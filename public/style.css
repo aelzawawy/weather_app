@@ -1,6 +1,6 @@
 body {
- font-family: cursive;
- padding-top: 60px;
+  font-family: cursive;
+  padding-top: 60px;
 }
 h1 {
   color: brown;
@@ -21,14 +21,46 @@ a:hover {
   color: white;
   transform: rotateZ(5deg);
 }
-.features{
-    position: fixed;
-    top: 0%;
-    width: 100%;
-    margin-bottom: 20px;
-    background-color: #ee7a7ad0;
-    backdrop-filter: blur(5px);
-    z-index: 10;
+.features {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0%;
+  width: 100%;
+  margin-bottom: 20px;
+  background-color: #ee7a7ad0;
+  backdrop-filter: blur(5px);
+  z-index: 10;
+}
+.welcome {
+  position: absolute;
+  right: 0%;
+  padding: 22px;
+  transform: scaleX(0);
+  transform-origin: right;
+  opacity: 0;
+  background-color: rgb(179, 98, 255);
+  font-size: 1.5rem;
+  animation: slideIn 5s 1s ease-out forwards;
+}
+@keyframes slideIn {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  30% {
+    transform: scaleX(1.5);
+    opacity: 1;
+  }
+  80% {
+    transform: scaleX(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scaleX(0);
+    opacity: 1;
+  }
+
 }
 .head {
   display: flex;
@@ -37,12 +69,14 @@ a:hover {
   height: 80px;
   padding-left: 10px;
 }
-.head h1{
-    color: white;
-    margin-right: 40px;
+.head h1 {
+  color: white;
+  margin-right: 40px;
 }
 form {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 20px;
   padding-inline: 10px;
@@ -50,31 +84,35 @@ form {
 }
 #location {
   width: 50%;
+  height: 60px;
   color: rgb(157, 53, 255);
-  text-transform: uppercase;
+  text-transform: capitalize;
   letter-spacing: 2px;
 }
-.form-control:focus{
+.form-control:focus {
   border-color: rgb(157, 53, 255);
-  box-shadow: 0 0 0 .25rem rgb(157 53 255 / 25%);
+  box-shadow: 0 0 0 0.25rem rgb(157 53 255 / 25%);
 }
 #location::placeholder {
-  width: 50%;
+  /* width: 50%; */
   color: rgb(157, 53, 255);
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 3px;
+  text-align: center;
 }
-input[type="submit"] {
+.btn-danger {
   padding: 15px;
   border-radius: 61% 39% 66% 34% / 34% 66% 34% 66%;
   text-transform: uppercase;
   transform: rotateZ(-10deg);
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
 }
-input[type="submit"]:hover {
+a svg {
+  transform: scale(2);
+}
+.btn-danger:hover {
   transform: rotateZ(0deg);
-
 }
 .days {
   display: flex;
@@ -82,7 +120,7 @@ input[type="submit"]:hover {
   justify-content: center;
   margin: auto;
   gap: 20px;
-  transition: all .3s;
+  transition: all 0.3s;
 }
 
 .card {
@@ -99,19 +137,30 @@ input[type="submit"]:hover {
   font-size: 3em;
   line-height: 1;
   transform: rotateZ(-10deg);
-  transition: all .3s ease-out;
+  transition: all 0.3s ease-out;
+  animation: fadeUp 1s ease-out;
 }
-.card:hover{
-    transform: rotateZ(0deg);
-    background-color: rgb(179, 98, 255);
-    color: white;
+@keyframes fadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) rotateZ(-10deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) rotateZ(-10deg);
+  }
 }
-.condition{
-    font-size: 1.2rem; 
+.card:hover {
+  transform: rotateZ(0deg);
+  background-color: rgb(179, 98, 255);
+  color: white;
 }
-.min-temp{
-    font-size: 2rem; 
+.condition {
+  font-size: 1.2rem;
 }
-.icon{
-    transform: scale(1.5);
+.min-temp {
+  font-size: 2rem;
+}
+.icon {
+  transform: scale(1.5);
 }
