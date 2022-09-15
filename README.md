@@ -1,2 +1,3 @@
-# weather_app
-<img src="public\Screenshot 2022-09-13 190449.png" width="1000">
+# weather_app preview
+
+<video src="public\Weather - Brave 2022-09-15 07-50-36-1.mp4" width="1000">
