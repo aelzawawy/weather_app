@@ -14,27 +14,30 @@ form.addEventListener("submit", (e) => {
 });
 
 ///////// Get browser's location function
-getLocation.addEventListener("click", function () {
+
+const getGps = function(event) {
   if (!navigator.geolocation)
     return console.log("Geolocation is not supported by this browser.");
 
   navigator.geolocation.getCurrentPosition(currLocation);
   details.innerHTML = "";
   document.querySelector("#content").classList.remove("content");
-});
+}
+window.addEventListener("load", getGps);
+getLocation.addEventListener("click", getGps);
+
 const currLocation = (position) => {
-  const GPS =
-    (input.value = `${position.coords.longitude},${position.coords.latitude}`);
+  const GPS = `${position.coords.longitude},${position.coords.latitude}`;
   weatherFunction(GPS);
 };
 
 ///////// Forecast function
 const weatherFunction = async (GPS) => {
   try {
-    const location = input.value;
-    let res = await fetch(`http://localhost:5000/weather?location=${GPS}`);
-    res = await fetch(`http://localhost:5000/weather?location=${location}`);
+    const location = GPS|| input.value || "New York";
+    let res = await fetch(`http://localhost:5000/weather?location=${location}`);
     const data = await res.json();
+    console.log(data);
     // Fetching forecast data
     const daysForecast = data.forecast.forecast.forecastday;
     days.innerHTML = "";
@@ -49,7 +52,7 @@ const weatherFunction = async (GPS) => {
   }
 };
 
-///////// Days function
+///////// Display days data function
 const addCard = (daysForecast) => {
   daysForecast.map((el, i) => {
     const date = new Date(el.date_epoch * 1000);
@@ -79,12 +82,15 @@ const addDetails = (daysForecast) => {
   document.querySelector("body").addEventListener("click", function (e) {
     const cards = document.querySelectorAll(".card");
     if (!e.target.closest(".card")) {
+      // Reset view when clicking outside the card
       details.innerHTML = "";
       cards.forEach((el) => el.classList.remove("cardClicked"));
       return document.querySelector("#content").classList.remove("content");
     }
+    // current, clicked card
     const current = e.target.closest(".card").getAttribute("order");
 
+    // Remove styles fom other cards
     cards.forEach((el) => el.classList.remove("cardClicked"));
     e.target.closest(".card").classList.add("cardClicked");
 
@@ -93,10 +99,9 @@ const addDetails = (daysForecast) => {
       // Formatting hours
       const currDate = new Date(el.time_epoch * 1000);
       const now = new Date(Date.now()).getTime();
-      
       // Skipping data from passed hours
-      if((el.time_epoch * 1000) < now) return;
-
+      if (el.time_epoch * 1000 < now) return;
+      
       const hour = new Date(currDate).toLocaleString("en-US", {
         hour: "numeric",
         hour12: true,

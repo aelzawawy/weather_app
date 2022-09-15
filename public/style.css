@@ -41,14 +41,14 @@ a:hover {
   opacity: 0;
   background-color: rgb(179, 98, 255);
   font-size: 1.5rem;
-  animation: slideIn 5s 1s ease-out forwards;
+  animation: slideIn 5s 2s ease-out forwards;
 }
 @keyframes slideIn {
   0% {
     transform: scaleX(0);
     opacity: 0;
   }
-  30% {
+  25% {
     transform: scaleX(1.5);
     opacity: 1;
   }
@@ -60,7 +60,6 @@ a:hover {
     transform: scaleX(0);
     opacity: 1;
   }
-
 }
 .head {
   display: flex;
