@@ -87,6 +87,7 @@ form {
   height: 60px;
   color: rgb(157, 53, 255);
   text-transform: capitalize;
+  text-align: center;
   letter-spacing: 2px;
 }
 .form-control:focus {
@@ -115,12 +116,13 @@ a svg {
   transform: rotateZ(0deg);
 }
 .days {
+  flex: 50%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin: auto;
   gap: 20px;
-  transition: all 0.3s;
+  transition: all 0.3s ease-out;
 }
 
 .card {
@@ -136,6 +138,7 @@ a svg {
   background-color: #ee7a7a;
   font-size: 3em;
   line-height: 1;
+  cursor: pointer;
   transform: rotateZ(-10deg);
   transition: all 0.3s ease-out;
   animation: fadeUp 1s ease-out;
@@ -155,6 +158,43 @@ a svg {
   background-color: rgb(179, 98, 255);
   color: white;
 }
+.content{
+  display: flex;
+  justify-content: center;
+}
+.details {
+  flex: 30%;
+  max-height: 1500px;
+  margin-top: 30px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  transition: all .3s ease-in-out;
+}
+.details-card{
+  display: flex;
+  margin-block: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 10px;
+  gap: 10px;
+  text-align: center;
+  background-color: #ee7a7a;
+  animation: fade-left 1s ease-out;
+}
+@keyframes fade-left {
+  0% {
+    opacity: 0;
+    transform: translateX(200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0px);
+  }
+}
+.details-card:hover{
+  background-color: rgb(179, 98, 255);
+  color: white;
+}
 .condition {
   font-size: 1.2rem;
 }
@@ -163,4 +203,13 @@ a svg {
 }
 .icon {
   transform: scale(1.5);
+}
+.hour{
+  padding-right: 10px;
+  border-right: 2px solid black;
+}
+.cardClicked{
+  transform: rotateZ(0deg);
+  background-color: rgb(179, 98, 255);
+  color: white;
 }
